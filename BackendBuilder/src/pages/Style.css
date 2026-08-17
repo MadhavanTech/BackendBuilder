@@ -1,0 +1,10 @@
+/* Minimal page-specific styles (kept small because Tailwind is primary) */
+
+#login .login-overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ensure svg occupies background without blocking content */
+.pulse-line { pointer-events: none; }

@@ -1,0 +1,223 @@
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #050607;
+    font-family: Arial, sans-serif;
+}
+
+.screen {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.input {
+    width: min(360px, 90vw);
+    height: auto;
+    background: rgba(14, 18, 25, 0.95);
+    border-radius: 24px;
+    border: 1px solid rgba(154, 170, 190, 0.2);
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.02), 0 25px 60px rgba(0, 0, 0, 0.45);
+    padding: 28px 22px 22px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    position: relative;
+    z-index: 1;
+}
+
+.logo {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(17, 37, 152, 0.03);
+    position: relative;
+}
+
+.logo::before {
+    content: "◌";
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #dfeaf8;
+    font-size: 2rem;
+}
+
+h1 {
+    font-size: clamp(2rem, 3vw, 2.5rem);
+    color: #eef5ff;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 1rem;
+}
+
+.text a {
+    color: #f1f5fe;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.fields {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.input-row {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 54px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.input-row.is-valid {
+    border-color: #37e08a;
+    box-shadow: 0 0 0 3px rgba(55, 224, 138, 0.15);
+}
+
+.input-row.is-invalid {
+    border-color: #ff5c5c;
+    box-shadow: 0 0 0 3px rgba(255, 92, 92, 0.15);
+}
+
+.icon {
+    width: 42px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.1rem;
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.input-row input {
+    flex: 1;
+    height: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: white;
+    font-size: 1rem;
+    padding: 0 12px;
+}
+
+.input-row input::placeholder {
+    color: rgba(255, 255, 255, 0.46);
+}
+
+.eye {
+    position: absolute;
+    right: 16px;
+    color: rgba(255, 255, 255, 0.45);
+    font-size: 0.9rem;
+    cursor: pointer;
+    user-select: none;
+}
+
+.eye:hover {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.login-btn {
+    width: 100%;
+    height: 52px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(180deg, #1d8cf2, #0f7ae7);
+    color: white;
+    font-size: 1.15rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 10px 18px rgba(29, 140, 242, 0.28);
+    transition: transform 0.15s ease;
+}
+
+.login-btn.pressed {
+    transform: scale(0.97);
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+.divider::before,
+.divider::after {
+    content: "";
+    height: 1px;
+    background: rgba(255, 255, 255, 0.12);
+    flex: 1;
+}
+
+.divider span {
+    padding: 0 14px;
+}
+
+.optionse {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.option {
+    min-height: 52px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.03);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+.google {
+    color: #f0f6ff;
+}
+
+.x {
+    color: #f3f9ff;
+}
+
+
