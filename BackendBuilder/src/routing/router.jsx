@@ -21,6 +21,8 @@ const router = createBrowserRouter([
             { path: 'backend', element: <GBackend /> },
         ],
     },
-])
+], {
+    basename: import.meta.env.BASE_URL,
+})
 
 export default router
