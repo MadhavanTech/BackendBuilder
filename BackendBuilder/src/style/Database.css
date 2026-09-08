@@ -1,0 +1,430 @@
+.Database {
+    width: min(100%, 70rem);
+    min-height: 21rem;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(35%, 1.15fr) minmax(35%, 0.85fr) minmax(20%, 0.55fr);
+    background: #ffffff;
+    border-radius: 8px;
+    overflow: visible;
+}
+
+.Database > * {
+    min-width: 0;
+    padding: 20px;
+    border: 1px solid #eeeef3;
+}
+
+/* Removed: .Database > *:last-child { border-right: 0; }
+   That rule was more specific than .ConnectionStatus and was
+   cancelling its right border on every state, so the box never
+   had a full 4-sided border. */
+
+.part11 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 14px;
+}
+
+.part11 > .name,
+.part11 > .url,
+.part11 > .password {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.part11 h5,
+.part2 h5,
+.ConnectionStatus h4 {
+    color: #252a3a;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.part11 p,
+.part2 p,
+.ConnectionStatus p {
+    margin: 0;
+    color: #92949d;
+    font-size: 10px;
+    line-height: 1.4;
+}
+
+.name > div,
+.url > div,
+.password > div,
+.part2 > div:nth-child(2) > div {
+    position: relative;
+    width: 100%;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    min-width: 0;
+}
+
+.name > div > svg,
+.url > div > svg,
+.password > div > svg,
+.part2 > div:nth-child(2) > div > svg {
+    position: absolute;
+    left: 11px;
+    z-index: 1;
+    width: 16px;
+    height: 16px;
+    color: #4f46e5;
+    pointer-events: none;
+    display: block;
+}
+
+.name > div > input,
+.url > div > input,
+.password > div > input,
+.part2 input,
+.typeDB {
+    width: 100%;
+    height: 36px;
+    padding: 0 12px;
+    box-sizing: border-box;
+    border: 1px solid #dfe2ea;
+    border-radius: 5px;
+    outline: none;
+    color: #252a3a;
+    background: #ffffff;
+    font: inherit;
+    font-size: 11px;
+}
+
+.name > div > input,
+.url > div > input,
+.password > div > input {
+    padding-left: 36px;
+}
+
+.part2 > div:nth-child(2) > div > input {
+    padding-left: 36px;
+}
+
+.name > div > input:focus,
+.url > div > input:focus,
+.password > div > input:focus,
+.part2 input:focus,
+.typeDB:focus {
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
+}
+
+.part11 > button {
+    align-self: flex-start;
+    min-height: 34px;
+    padding: 0 16px;
+    border: 1px solid #4f46e5;
+    border-radius: 5px;
+    color: #ffffff;
+    background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.part11 > button:hover {
+    background: linear-gradient(135deg, #4338ca 0%, #3730a3 100%);
+}
+
+.part2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+}
+
+.part2 > div + div {
+    margin-top: 16px;
+}
+
+.ConnectionStatus {
+    width: 100%;
+    height: 100%;
+    padding: 20px 18px 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: 0.5rem;
+    box-sizing: border-box;
+    background: linear-gradient(180deg, #f8f9ff 0%, #eef3ff 100%);
+    border: 1px solid #7c3aed;
+    border-radius: 16px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    transition: background 0.3s ease, border-color 0.3s ease;
+    overflow: auto; /* Match default state to avoid shifting borders/content */
+}
+
+.ConnectionStatus.error {
+
+     width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: 0.5rem;
+    box-sizing: border-box;
+     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    transition: background 0.3s ease, border-color 0.3s ease;
+    background: linear-gradient(180deg, #fff7f7 0%, #fff0f0 100%);
+    border-color: #f7d3d3;
+    overflow: auto;
+   padding: 10px;
+    /* overflow: scroll removed — it only appeared in error state,
+       which added a scrollbar that ate into the box's width and
+       shifted the border/content inward. Match the default state
+       (no overflow rule = visible) so nothing moves between states. */
+}
+
+.statusHeader {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.statusHeader > .text {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    text-align: center;
+}
+
+.logoBox {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+    color: #ffffff;
+    flex-shrink: 0;
+}
+
+.ConnectionStatus h4 {
+    margin: 0 0 3px 0;
+    font-size: 12px;
+    font-weight: 700;
+    color: #252a3a;
+}
+
+.ConnectionStatus p {
+    margin: 0;
+    color: #92949d;
+    font-size: 10px;
+    line-height: 1.4;
+}
+
+.statusProgress {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    margin-top: 4px;
+}
+
+.statusBar {
+    position: relative;
+    flex: 1;
+    height: 9px;
+    border-radius: 999px;
+    background: #e9edff;
+    overflow: hidden;
+    box-shadow: inset 0 1px 2px rgba(79, 70, 229, 0.08);
+}
+
+.statusFill {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 0;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #4f46e5 0%, #22c55e 100%);
+    transition: width 0.5s ease;
+}
+
+.statusFill.errorFill {
+    background: linear-gradient(90deg, #fda4af 0%, #ef4444 100%);
+}
+
+.statusValue {
+    min-width: 38px;
+    text-align: right;
+    color: #4338ca;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.statusList {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    margin-top: 2px;
+    padding-left: 5px;
+}
+
+.statusItem {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    align-items: center;
+    gap: 12px;
+    color: #92949d;
+    font-size: 11px;
+    transition: all 0.3s ease;
+}
+
+.statusDot {
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    border: 1px solid #dfe2ea;
+    background: #ffffff;
+    color: #9ca3af;
+    font-size: 10px;
+    font-weight: 800;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+.statusItem.done .statusDot {
+    background: #ecfdf5;
+    border-color: #86efac;
+    color: #15803d;
+    box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.1);
+}
+
+.statusItem.done .statusText {
+    color: #1b8d5d;
+    font-weight: 700;
+}
+
+.statusItem.active .statusDot {
+    background: #eef2ff;
+    border-color: #4f46e5;
+    color: #4338ca;
+    box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+}
+
+.statusItem.active .statusText {
+    color: #3730a3;
+    font-weight: 700;
+}
+
+.statusItem.failed .statusDot {
+    background: #fff1f1;
+    border-color: #fca5a5;
+    color: #dc2626;
+}
+
+.statusText {
+    line-height: 1.2;
+    letter-spacing: 0.01em;
+}
+
+.finalResult {
+    width: 100%;
+    padding: 8px 10px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 800;
+    text-align: center;
+    letter-spacing: 0.02em;
+}
+
+.finalResult.success {
+    background: #ecfdf5;
+    color: #15803d;
+    border: 1px solid #bbf7d0;
+}
+
+.finalResult.error {
+    background: #fff1f1;
+    color: #dc2626;
+    border: 1px solid #fecaca;
+}
+
+.botResponse {
+    width: 100%;
+    height: 6em;
+    padding: 10px 12px;
+    border-radius: 12px;
+    box-sizing: border-box;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(79, 70, 229, 0.12);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+}
+
+.botResponseHeader {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+}
+
+.botBadge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 28px;
+    height: 20px;
+    padding: 0 8px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+    color: #ffffff;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.botLabel {
+    color: #4338ca;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+}
+
+.botResponse p {
+    margin: 0;
+    color: #374151;
+    font-size: 10px;
+    line-height: 1.5;
+    word-break: break-word;
+
+}
+
+@media (max-width: 900px) {
+    .Database {
+        grid-template-columns: minmax(220px, 1fr) minmax(190px, 1fr);
+    }
+
+    .ConnectionStatus {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 600px) {
+    .Database {
+        grid-template-columns: 1fr;
+    }
+
+    .ConnectionStatus {
+        grid-column: auto;
+    }
+}

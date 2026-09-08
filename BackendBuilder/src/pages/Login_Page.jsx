@@ -1,7 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Appcontext } from '../context/Backend'
-import './Style.css';
+import React, { useState } from 'react';
 
 const CX = 700;
 const CY = 450;
@@ -74,23 +71,6 @@ const Login_Page = () => {
   const [result, setResult] = useState(null); // null | 'ok' | 'err'
   const [pressed, setPressed] = useState(false);
   const [runId, setRunId] = useState(0);
-
-  const location = useLocation()
-  const navigate = useNavigate()
-  const { LoginStatus } = useContext(Appcontext)
-
-  const [signupSuccess, setSignupSuccess] = useState(!!location.state?.signupSuccess)
-
-  useEffect(() => {
-    if (signupSuccess) {
-      const t = setTimeout(() => setSignupSuccess(false), 2600)
-      return () => clearTimeout(t)
-    }
-  }, [signupSuccess])
-
-  useEffect(() => {
-    if (LoginStatus) navigate('/home')
-  }, [LoginStatus, navigate])
 
   const activeColor = result === 'ok' ? COLORS.ok : result === 'err' ? COLORS.err : '#8fe9ff';
 
@@ -197,15 +177,9 @@ const Login_Page = () => {
 
         <h1>Welcome Back</h1>
 
-        {signupSuccess && (
-          <div className="signup-success" style={{ color: COLORS.ok, marginTop: 6, marginBottom: 8 }}>
-            Account created — please log in
-          </div>
-        )}
-
         <div className="text">
           <p>Don't have an account yet?</p>
-          <Link to="/signup">Sign up</Link>
+          <a href="#">Sign up</a>
         </div>
 
         <div className="fields">

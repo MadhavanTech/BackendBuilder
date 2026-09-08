@@ -1,0 +1,240 @@
+.Database {
+    width: min(100%, 70rem);
+    min-height: 21rem;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(250px, 1.15fr) minmax(210px, 0.85fr) minmax(150px, 0.55fr);
+    background: #ffffff;
+    border: 1px solid #eeeef3;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.Database > * {
+    min-width: 0;
+    padding: 20px;
+    border-right: 1px solid #eeeef3;
+}
+
+.Database > *:last-child {
+    border-right: 0;
+}
+
+.part11 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 14px;
+}
+
+.part11 > .name,
+.part11 > .url,
+.part11 > .password {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.part11 h5,
+.part2 h5,
+.ConnectionStatus h4 {
+    color: #252a3a;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.part11 p,
+.part2 p,
+.ConnectionStatus p {
+    margin: 0;
+    color: #92949d;
+    font-size: 10px;
+    line-height: 1.4;
+}
+
+.name > div,
+.url > div,
+.password > div,
+.part2 > div:nth-child(2) > div {
+    position: relative;
+    width: 100%;
+    height: 36px;
+    display: flex;
+    align-items: center;
+}
+
+.name > div > svg,
+.url > div > svg,
+.password > div > svg,
+.part2 > div:nth-child(2) > div > svg {
+    position: absolute;
+    left: 11px;
+    z-index: 1;
+    width: 17px;
+    height: 17px;
+    color: #4f46e5;
+    pointer-events: none;
+}
+
+.name > div > input,
+.url > div > input,
+.password > div > input,
+.part2 input,
+.typeDB {
+    width: 100%;
+    height: 36px;
+    padding: 0 12px;
+    border: 1px solid #dfe2ea;
+    border-radius: 5px;
+    outline: none;
+    color: #252a3a;
+    background: #ffffff;
+    font: inherit;
+    font-size: 11px;
+}
+
+.name > div > input,
+.url > div > input,
+.password > div > input {
+    padding-left: 36px;
+}
+
+.part2 > div:nth-child(2) > div > input {
+    padding-left: 36px;
+}
+
+.name > div > input:focus,
+.url > div > input:focus,
+.password > div > input:focus,
+.part2 input:focus,
+.typeDB:focus {
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
+}
+
+.part11 > button {
+    align-self: flex-start;
+    min-height: 34px;
+    padding: 0 16px;
+    border: 1px solid #4f46e5;
+    border-radius: 5px;
+    color: #ffffff;
+    background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.part11 > button:hover {
+    background: linear-gradient(135deg, #4338ca 0%, #3730a3 100%);
+}
+
+.part2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+}
+
+.part2 > div + div {
+    margin-top: 16px;
+}
+
+.ConnectionStatus {
+    width: 100%;
+    height: 100%;
+    padding: 22px 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    gap: 1rem;
+    background: linear-gradient(180deg, #f8f9ff 0%, #f1f5ff 100%);
+    border-left: 1px solid #e6e8f5;
+    transition: all 0.3s ease;
+}
+
+.ConnectionStatus.error {
+    background: linear-gradient(180deg, #fff7f7 0%, #fff0f0 100%);
+    border-left: 1px solid #f5c7c7;
+}
+
+/* --- Additions for ConnectionStatus.jsx --- */
+
+.statusHeader {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logoBox {
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    border-radius: 8px;
+    background: #eef2ff;
+    color: #4f46e5;
+    transition: all 0.3s ease;
+}
+
+.ConnectionStatus.error .logoBox {
+    background: #fff1f1;
+    color: #dc2626;
+}
+
+.statusDot .failedValue {
+    color: #dc2626;
+}
+
+.statusItem.failed .statusDot {
+    background: #fff1f1;
+    border-color: #fca5a5;
+    color: #dc2626;
+}
+
+.botResponse {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 8px;
+    background: #ffffff;
+    border: 1px solid #e6e8f5;
+    transition: all 0.3s ease;
+}
+
+.ConnectionStatus.error .botResponse {
+    border-color: #f5c7c7;
+}
+
+.botResponseHeader {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+}
+
+.botBadge {
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: #4f46e5;
+    color: #ffffff;
+    font-size: 9px;
+    font-weight: 700;
+}
+
+.ConnectionStatus.error .botBadge {
+    background: #dc2626;
+}
+
+.botLabel {
+    color: #252a3a;
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.botResponse p {
+    color: #5b5f6b;
+    font-size: 11px;
+    line-height: 1.5;
+}

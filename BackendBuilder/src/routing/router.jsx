@@ -1,31 +1,26 @@
+import { createBrowserRouter, Navigate } from 'react-router-dom'
+import Home from '../pages/Home'
+import Database from '../component/Database'
+import Tables from '../component/Tables'
+import Columns from '../component/Columns'
+import API from '../component/API'
+import GBackend from '../component/GBackend'
+import TableConnection from '../component/TableConnection'
 
-import { Children, useContext } from "react";
-import Home from "../pages/Home";
-import { Appcontext } from "../context/Backend";
-import login from "../pages/login"
-import sin from "../pages/sin"
-import Sing_Page from "../pages/Sing_Page";
-import Login_Page from "../pages/Login_Page";
-
-const {LoginStatus , setLoginStatus} = useContext(Appcontext)
-
-const routings = ([
-
+const router = createBrowserRouter([
     {
         path: '/',
-        element: LoginStatus ?<Sing_Page/>: <Login_Page/>,
-        Children: [
-
-            {
-                path: LoginStatus ?'/login' : '/Home',
-                element:LoginStatus ?<Login_Page/> : <Home/>
-            },
-
-            LoginStatus ? {} : {
-
-                path: '/sing',
-                element:<Sing_Page/>
-            }
-        ]
-    }
+        element: <Home />,
+        children: [
+            { index: true, element: <Navigate to="database" replace /> },
+            { path: 'database', element: <Database /> },
+            { path: 'tables', element: <Tables /> },
+            { path: 'columns', element: <Columns /> },
+            { path: 'connection', element: <TableConnection /> },
+            { path: 'api', element: <API /> },
+            { path: 'backend', element: <GBackend /> },
+        ],
+    },
 ])
+
+export default router

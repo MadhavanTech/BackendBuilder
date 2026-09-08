@@ -1,0 +1,289 @@
+.main {
+
+    display: grid;
+    grid-template-columns: minmax(130px, 0.8fr) minmax(0, 1.7fr) minmax(210px, 0.55fr);
+    width: min(100%, 70rem);
+    min-height: 15rem;
+    margin: 0 auto;
+    /* overflow: hidden; */
+    border-radius: 8px;
+   
+}
+
+.main > .numberofTables {
+
+    border-top-left-radius: 20px;
+    border-end-start-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10%;
+    padding: 6%;
+    border: 1px solid #eeeef3;
+
+}
+
+.numberofTables > h5{
+
+    font-size: 13px;
+    font-weight: bold;
+}
+.numberofTables > .count {
+
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     width: 65%;
+     height: 18%;
+     border: 1px solid #dfe2ea;
+     border-radius: 5px;
+
+}
+
+.count > .part1 {
+    width: 25%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-right: 1px solid #eaebf1;
+    background-color: #f4f4f7;
+}
+
+.part1:hover {
+
+    background-color: #dfe2ea;
+    cursor: pointer;
+}
+
+.part1 > h5 {
+
+    font-size: 30px;
+    font-weight: 10;
+    color: rgb(159, 157, 157);
+}
+.count > .part2 {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.part2> h3 {
+
+    font-weight: bold;
+}
+
+.count > .part3 {
+    width: 25%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-left: 1px solid #eaebf1;
+    background-color: #f4f4f7;
+}
+
+.part3:hover {
+
+    background-color: #dfe2ea;
+    cursor: pointer;
+}
+
+.part3 > h3 {
+
+    font-size: 20px;
+    font-weight: 10;
+    color: rgb(159, 157, 157);
+    
+}
+
+.numberofTables > P{
+
+    font-size: 10px;
+    color: rgb(159, 157, 157);
+}
+
+/*right side Table */
+
+.calaums {
+
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    border: 1px solid #eeeef3;
+}
+
+.calaums > h6 {
+
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.calaums > .TableNames {
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 15em;
+    overflow-y: scroll;
+
+}
+
+.TableNames > .calums {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.calums > .num {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2.3em;
+    height: 2.3em;
+    border-radius: 5px;
+    border: 1px solid #b8b5dd;
+}
+
+.calums > .name {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-width: 0;
+    height: 2.9em;
+    border-radius: 5px;
+    border: 1px solid #dcdce4;
+    padding: 10px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.calums > .remove {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2.3em;
+    height: 2.3em;
+    border-radius: 5px;
+    background-color: #f7f7f8;
+    cursor: pointer;
+}
+
+.remove:hover {
+
+     color: #d6455d;
+    background: #fff0f2;
+}
+
+.TableNames > .AddTables {
+
+    width: 55%;
+    height: 2.4em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    border: 1px solid #aaa7d7;
+    margin-left: 22%;
+    position: sticky;
+    cursor: pointer;
+}
+
+.AddTables > h5 {
+
+    font-size: 13px;
+    font-weight: bold;
+    color: #5a4ff9;
+}
+
+h5 > span {
+
+    font-size: 20px;
+    font-weight: 500;
+    color: #5a4ff9;
+    margin-right: 5px;
+}
+
+/* additional Content */
+
+.NextStep {
+
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    margin-left: 0;
+    padding: 15px;
+    min-width: 0;
+    min-height: 100%;
+    border: 1px solid #eeeef3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    overflow: hidden;
+}
+
+.NextStep > h4 {
+
+    width: 100%;
+    font-size: 13px;
+    font-weight: bold;
+    color: #252a3a;
+}
+
+.NextStep > .icons {
+
+    width: 3.5em;
+    height: 2.6em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 7px;
+    color: #5a4ff9;
+    background-color: #f0efff;
+}
+
+.NextStep > p {
+
+    max-width: 120px;
+    margin: 0;
+    text-align: center;
+    color: rgb(122, 115, 115);
+    font-size: 10px;
+    line-height: 1.5;
+}
+
+.NextStep > .Dessigin {
+
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
+    margin-top: 2em;
+}
+
+.Dessigin > div {
+
+    width: 20px;
+    height: 4px;
+    border-radius: 4px;
+    background-color: #dfe2ea;
+}
+
+.Dessigin > div:first-child,
+.Dessigin > div:nth-child(2) {
+
+    background-color: #5a4ff9;
+}
+
+

@@ -1,0 +1,440 @@
+.componentWithChat {
+
+    width: 100%;
+    height: 25.5rem;
+    min-width: 0;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+   
+}
+
+
+.componentWithChat > .workflowPage {
+    height: 100%;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: 25% 50% 25%;
+}
+
+.workflowPage > .parent {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #dddde6;
+    border-radius: 10px;
+}
+
+.parent > .text {
+
+    width: 100%;
+    height: 20%;
+}
+.parent> .text > h4 {
+    color: black;
+    font-size: 13px;
+    font-weight: 700;
+    display: block;
+    width: 100%;
+}
+
+.parent > .text > p {
+    color: #a4a1a7;
+    font-size: 12px;
+    font-weight: 500;
+    display: block;
+    width: 100%;
+    margin-bottom: 1.5em;
+}
+
+.parent > .Tables {
+
+    width: 100%;
+    height: 25em;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.parent > .Tables > .Tablesnams {
+
+    width: 100%;
+    height: 5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #dddde6;
+    border-radius: 8px;
+}
+
+.Tablesnams > .text {
+   
+    width: 60%;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.text > h4 {
+
+    color: black;
+    font-size: 13px;
+    font-weight: bold;
+    display: block;
+    width: 100%;
+    margin-top: 0.5em;
+}
+
+.text > p {
+
+    color: #949197;
+    font-size: 12px;
+    font-weight: 500;
+    display: block;
+    width: 100%;
+    margin-bottom: 0.5em;
+}
+
+.parent > .Tables > .Tablesnams > .radio > input {
+    width: 16px;
+    height: 16px;
+    margin: 0 12px 0 8px;
+    accent-color: #5a4ff9;
+    cursor: pointer;
+}
+
+.tableSheetIcon {
+    display: block;
+    flex: 0 0 25px;
+    color: #5a4ff9;
+    margin-right: 1em;
+}
+
+/*Child Table */
+
+.workflowPage > .Child {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #dddde6;
+    border-radius: 10px;
+}
+
+.Child > .text {
+
+    width: 100%;
+    height: 20%;
+}
+.Child> .text > h4 {
+    color: black;
+    font-size: 13px;
+    font-weight: 700;
+    display: block;
+    width: 100%;
+}
+
+.Child > .text > p {
+    color: #a4a1a7;
+    font-size: 12px;
+    font-weight: 500;
+    display: block;
+    width: 100%;
+    margin-bottom: 1.5em;
+}
+
+.Child > .Tables {
+
+    width: 100%;
+    height: 25em;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.Child > .Tables > .Tablesnams {
+
+    width: 100%;
+    height: 5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #dddde6;
+    border-radius: 8px;
+}
+
+.Tablesnams > .text {
+   
+    width: 60%;
+    height: 100%;
+}
+
+.text > h4 {
+
+    color: black;
+    font-size: 13px;
+    font-weight: bold;
+    display: block;
+    width: 100%;
+    margin-top: 0.5em;
+}
+.text > p {
+
+    color: #949197;
+    font-size: 12px;
+    font-weight: 500;
+    display: block;
+    width: 100%;
+    margin-bottom: 0.5em;
+}
+
+.Child > .Tables > .Tablesnams > .radio > input {
+    width: 16px;
+    height: 16px;
+    margin: 0 12px 0 8px;
+    accent-color: #5a4ff9;
+    cursor: pointer;
+}
+
+.tableSheetIcon {
+    display: block;
+    flex: 0 0 25px;
+    color: #5a4ff9;
+    margin-right: 1em;
+}
+
+
+.workflowPage > .Connection {
+
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Connection > .Connections{
+
+    width: 85%;
+    height: 80%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5em;
+
+}
+
+.Connections > *{
+
+    border: 1px solid #dddde6;
+    border-radius: 15px;
+}
+
+
+.Connections > .ParentTable {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.ParentTable > .text {
+     width: 100%;
+     height: 20%;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+}
+
+.text > h5 {
+
+    font-size: 12px;
+    font-weight: bold;
+    color: black;
+    display: block;
+    width: 50%;
+    text-align: center;
+    height: 3em;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.relationControl {
+    position: relative;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    color: #252a3a;
+}
+
+.relationIcon {
+    color: #5a4ff9;
+}
+
+.relationButton {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 1px solid #dddde6;
+    border-radius: 50%;
+    background: #ffffff;
+    cursor: pointer;
+}
+
+.relationButton:hover,
+.relationButton[aria-expanded='true'] {
+    border-color: #5a4ff9;
+    background: #f5f4ff;
+}
+
+.relationMenu {
+    position: absolute;
+    top: 34px;
+    right: 0;
+    z-index: 10;
+    width: 132px;
+    padding: 4px;
+    border: 1px solid #dddde6;
+    border-radius: 6px;
+    background: #ffffff;
+    box-shadow: 0 8px 18px rgba(37, 42, 58, 0.14);
+}
+
+.relationOption {
+    display: block;
+    width: 100%;
+    padding: 7px 8px;
+    border: 0;
+    border-radius: 4px;
+    background: transparent;
+    color: #252a3a;
+    font-size: 10px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.relationOption:hover,
+.relationOption.selected {
+    background: #f0efff;
+    color: #5a4ff9;
+}
+
+.ParentTable > .ParentColums{
+
+    width: 100%;
+    height: 23em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    padding: 10px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.ParentColums > .columnRow {
+
+    width: 100%;
+    height: 35px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ParentColums > .columnRow:hover {
+
+    background-color: #d7d2db;
+}
+
+.columnRow > .containspoint {
+
+    width: 20%;
+    height: 10em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+}
+.containspoint > #point {
+
+    width: 0.6em;
+    height: 0.6em;
+    background-color: #9e9ba0;
+    border-radius: 50%;
+
+}
+.columnRow > .columsselect {
+    width: 80%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.columsselect > h5 {
+    margin: 0;
+    padding: 6px 8px;
+    overflow: hidden;
+    border-radius: 4px;
+   color: #a4a0a8;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 1.2;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.columsselect > .point {
+
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    background-color: #5a4ff9;
+    margin-left: 2px;
+}
+
+
+
+
+
+
+.componentWithChat > .componentChat {
+    
+    height: 23em;
+    margin-top: 1.3em;
+    margin-right: 1em;
+}
+
+.columsselect > span {
+    color: #92949d;
+    font-size: 9px;
+}

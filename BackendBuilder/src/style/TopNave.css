@@ -1,0 +1,167 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.topnav {
+    width: 81vw;
+    height: 20%;
+    background-color: white;
+    position: fixed;
+    left: 19%;
+    z-index: 20;
+}
+.topnav > .top{
+
+    width: 100%;
+    height: 30%;
+    margin-bottom: 1%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3%;
+
+}
+
+.top > .save {
+
+    margin-left: 80%;
+    border: 1px solid #dfe2ea;
+    width: 9%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    cursor: pointer;
+
+}
+
+.save:hover {
+
+    background-color: #5a4ff9;
+
+}
+
+.save > h5 {
+
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.save > h5:hover {
+
+    color: aliceblue;
+}
+
+.top > .Email {
+
+    width: 30px;
+    height: 30px;
+    background-color: #5a4ff9;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Email > h4 {
+
+    color: #dfe2ea;
+    font-weight: 500;
+}
+
+.topnav > .pages{
+
+    width: 100%;
+    height: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 6%;
+}
+
+.pages > .part {
+
+    flex: 1 1 0;
+    min-width: 0;
+    height: 50%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 6px;
+    position: relative;
+}
+
+.pages > .part:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 32px;
+    right: 12px;
+    height: 1px;
+    background-color: #eeeff3;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.pages > .part.completed:not(:last-child)::after {
+    background-color: #5a4ff9;
+}
+
+.part > .text {
+
+    color: rgb(179, 182, 186);
+    font-size: 11px;
+    white-space: nowrap;
+    background-color: white;
+    padding: 0 3px;
+    position: relative;
+    z-index: 1;
+}
+
+.part > .round {
+
+    border: 1px solid rgb(207, 198, 198);
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    position: relative;
+    z-index: 1;
+}
+
+.round > h6 {
+
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.part.active .round {
+    background-color: #5a4ff9;
+    border-color: #5a4ff9;
+}
+
+.part.active .round > h6,
+.part.completed .round > h6 {
+    color: white;
+}
+
+.part.completed .round {
+    background-color: #22b573;
+    border-color: #22b573;
+}
+
+.part.active .text {
+    color: #5a4ff9;
+}
+
+.part.completed .text {
+    color: #22b573;
+}
+

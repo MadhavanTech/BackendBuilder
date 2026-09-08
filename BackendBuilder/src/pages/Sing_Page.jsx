@@ -1,35 +1,32 @@
-import React, { useState, useContext } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { Appcontext } from '../context/Backend'
-import './Style.css'
+import React, { useState } from 'react';
 
-const CX = 700
-const CY = 450
+const CX = 700;
+const CY = 450;
 
 const PATHS = [
   `M ${CX - 170} ${CY - 160} L ${CX - 330} ${CY - 330} L 160 ${CY - 330} L 160 200 L 40 200`,
   `M ${CX + 170} ${CY - 160} L ${CX + 330} ${CY - 330} L 1240 ${CY - 330} L 1240 200 L 1360 200`,
   `M ${CX - 170} ${CY + 230} L ${CX - 330} ${CY + 400} L 160 ${CY + 400} L 160 700 L 40 700`,
   `M ${CX + 170} ${CY + 230} L ${CX + 330} ${CY + 400} L 1240 ${CY + 400} L 1240 700 L 1360 700`,
-]
+];
 
 const NODES = [
   { x: 40, y: 200, side: 'right' },
   { x: 1360, y: 200, side: 'left' },
   { x: 40, y: 700, side: 'right' },
   { x: 1360, y: 700, side: 'left' },
-]
+];
 
-const COLORS = { ok: '#37e08a', err: '#ff5c5c' }
+const COLORS = { ok: '#37e08a', err: '#ff5c5c' };
 
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function Node({ x, y, side, color, active, delay }) {
-  const boxW = 150
-  const boxH = 60
-  const bx = side === 'left' ? x : x - boxW
-  const by = y - boxH / 2
-  const tx = x - 8
+  const boxW = 150;
+  const boxH = 60;
+  const bx = side === 'left' ? x : x - boxW;
+  const by = y - boxH / 2;
+  const tx = x - 8;
 
   return (
     <g>
@@ -62,89 +59,79 @@ function Node({ x, y, side, color, active, delay }) {
         }
       />
     </g>
-  )
+  );
 }
 
-const Sing_Page = ({ onSwitchToLogin }) => {
-  const navigate = useNavigate()
-  const { setLoginStatus } = useContext(Appcontext)
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [confirmPassword, setConfirmPassword] = useState('')
-  const [showPassword, setShowPassword] = useState(false)
-  const [showConfirm, setShowConfirm] = useState(false)
+const Sign_Up = ({ onSwitchToLogin }) => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
 
-  const [nameState, setNameState] = useState(null)
-  const [emailState, setEmailState] = useState(null)
-  const [passwordState, setPasswordState] = useState(null)
-  const [confirmState, setConfirmState] = useState(null)
+  const [nameState, setNameState] = useState(null);
+  const [emailState, setEmailState] = useState(null);
+  const [passwordState, setPasswordState] = useState(null);
+  const [confirmState, setConfirmState] = useState(null);
 
-  const [result, setResult] = useState(null) // null | 'ok' | 'err'
-  const [pressed, setPressed] = useState(false)
-  const [runId, setRunId] = useState(0)
+  const [result, setResult] = useState(null); // null | 'ok' | 'err'
+  const [pressed, setPressed] = useState(false);
+  const [runId, setRunId] = useState(0);
 
-  const activeColor = result === 'ok' ? COLORS.ok : result === 'err' ? COLORS.err : '#8fe9ff'
+  const activeColor = result === 'ok' ? COLORS.ok : result === 'err' ? COLORS.err : '#8fe9ff';
 
   const handleNameChange = (e) => {
-    const value = e.target.value
-    setName(value)
-    setNameState(value.trim() ? value.trim().length >= 2 : null)
-  }
+    const value = e.target.value;
+    setName(value);
+    setNameState(value.trim() ? value.trim().length >= 2 : null);
+  };
 
   const handleEmailChange = (e) => {
-    const value = e.target.value
-    setEmail(value)
-    setEmailState(value.trim() ? EMAIL_RE.test(value.trim()) : null)
-  }
+    const value = e.target.value;
+    setEmail(value);
+    setEmailState(value.trim() ? EMAIL_RE.test(value.trim()) : null);
+  };
 
   const handlePasswordChange = (e) => {
-    const value = e.target.value
-    setPassword(value)
-    const trimmed = value.trim()
-    setPasswordState(trimmed ? trimmed.length >= 6 : null)
+    const value = e.target.value;
+    setPassword(value);
+    const trimmed = value.trim();
+    setPasswordState(trimmed ? trimmed.length >= 6 : null);
+    // re-check confirm match live, if user already typed one
     if (confirmPassword) {
-      setConfirmState(confirmPassword === value)
+      setConfirmState(confirmPassword === value);
     }
-  }
+  };
 
   const handleConfirmChange = (e) => {
-    const value = e.target.value
-    setConfirmPassword(value)
-    setConfirmState(value ? value === password : null)
-  }
+    const value = e.target.value;
+    setConfirmPassword(value);
+    setConfirmState(value ? value === password : null);
+  };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    const nameIsValid = name.trim().length >= 2
-    const emailIsValid = EMAIL_RE.test(email.trim())
-    const passwordIsValid = password.trim().length >= 6
-    const confirmIsValid = confirmPassword.length > 0 && confirmPassword === password
+    const nameIsValid = name.trim().length >= 2;
+    const emailIsValid = EMAIL_RE.test(email.trim());
+    const passwordIsValid = password.trim().length >= 6;
+    const confirmIsValid = confirmPassword.length > 0 && confirmPassword === password;
 
-    setNameState(name.trim() ? nameIsValid : null)
-    setEmailState(email.trim() ? emailIsValid : null)
-    setPasswordState(password.trim() ? passwordIsValid : null)
-    setConfirmState(confirmPassword ? confirmIsValid : null)
+    setNameState(name.trim() ? nameIsValid : null);
+    setEmailState(email.trim() ? emailIsValid : null);
+    setPasswordState(password.trim() ? passwordIsValid : null);
+    setConfirmState(confirmPassword ? confirmIsValid : null);
 
-    setPressed(true)
-    setTimeout(() => setPressed(false), 350)
+    setPressed(true);
+    setTimeout(() => setPressed(false), 350);
 
-    const allValid = nameIsValid && emailIsValid && passwordIsValid && confirmIsValid
-    setResult(allValid ? 'ok' : 'err')
-    setRunId((id) => id + 1)
+    const allValid = nameIsValid && emailIsValid && passwordIsValid && confirmIsValid;
+    setResult(allValid ? 'ok' : 'err');
+    setRunId((id) => id + 1);
+  };
 
-    if (allValid) {
-      // mark user as logged in and navigate to home after short delay
-      setLoginStatus(true)
-      setTimeout(() => {
-        navigate('/home')
-      }, 700)
-    }
-  }
-
-  const wrapClass = (state) =>
-    `input-row field-wrap${state === true ? ' is-valid' : state === false ? ' is-invalid' : ''}`
+  const wrapClass = (state) => `input-row field-wrap${state === true ? ' is-valid' : state === false ? ' is-invalid' : ''}`;
 
   return (
     <section className="screen">
@@ -211,7 +198,15 @@ const Sing_Page = ({ onSwitchToLogin }) => {
 
         <div className="text">
           <p>Already have an account?</p>
-          <Link to="/login">Login</Link>
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              if (onSwitchToLogin) onSwitchToLogin();
+            }}
+          >
+            Login
+          </a>
         </div>
 
         <div className="fields">
@@ -267,7 +262,7 @@ const Sing_Page = ({ onSwitchToLogin }) => {
         </footer>
       </form>
     </section>
-  )
-}
+  );
+};
 
-export default Sing_Page
+export default Sign_Up;
