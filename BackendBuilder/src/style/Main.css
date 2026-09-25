@@ -10,3 +10,28 @@
     height: 100%;
     background-color: white;
 }
+
+.mainShell {
+    min-height: 100vh;
+    background: #f7f8fc;
+    display: grid;
+    grid-template-columns: 19% 1fr;
+}
+
+@media (max-width: 800px) {
+    .mainNav {
+        position: relative;
+        width: 100%;
+        height: auto;
+    }
+
+    .mainNav nav {
+        height: auto;
+        min-height: 0;
+    }
+
+    .mainContent {
+        margin-left: 0;
+        padding: 16px;
+    }
+}

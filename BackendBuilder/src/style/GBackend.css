@@ -1,0 +1,737 @@
+/* =========================================
+   GENERATE BACKEND
+========================================= */
+
+.backendLayout {
+    width: 100%;
+    max-width: 70rem;
+
+    height: auto;
+
+    min-height: 15rem;
+
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns: minmax(0, 1fr) 210px;
+
+    gap: 0;
+
+    overflow: hidden;
+}
+
+
+/* =========================================
+   MAIN
+========================================= */
+
+.backendMain {
+    min-width: 0;
+    min-height: 0;
+
+    padding: 18px;
+
+    border: 1px solid #eceef4;
+    border-radius: 9px;
+
+    background: #ffffff;
+
+    font-size: 14px;
+
+    overflow-y: auto;
+}
+
+
+.backendMain::-webkit-scrollbar {
+    width: 5px;
+}
+
+.backendMain::-webkit-scrollbar-thumb {
+    background: #dfe3eb;
+    border-radius: 10px;
+}
+
+
+/* =========================================
+   HEADING
+========================================= */
+
+.backendHeading {
+    margin-bottom: 17px;
+}
+
+
+.backendStep {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #323b4c;
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+
+.backendHeading h3 {
+    margin: 0 0 5px;
+
+    color: #182033;
+
+    font-size: 20px;
+    font-weight: 800;
+}
+
+
+.backendHeading p {
+    margin: 0;
+
+    color: #69778b;
+
+    font-size: 12px;
+}
+
+
+/* =========================================
+   CONTENT
+========================================= */
+
+.backendContent {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.45fr)
+        minmax(205px, 0.8fr);
+
+    gap: 12px;
+
+    align-items: stretch;
+}
+
+
+/* =========================================
+   SUMMARY
+========================================= */
+
+.summaryPanel,
+.benefitsPanel {
+
+    min-width: 0;
+
+    padding: 12px;
+
+    border: 1px solid #e3e7ee;
+    border-radius: 8px;
+
+    background: #ffffff;
+}
+
+
+.summaryPanel h4,
+.benefitsPanel h4 {
+
+    margin: 0 0 9px;
+
+    color: #202b3e;
+
+    font-size: 13px;
+
+    font-weight: 800;
+}
+
+
+/* =========================================
+   SUMMARY ROWS
+========================================= */
+
+.summaryRows {
+    display: flex;
+
+    flex-direction: column;
+}
+
+
+.summaryRow {
+
+    min-height: 39px;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(105px, 1fr)
+        minmax(80px, 1.25fr);
+
+    align-items: center;
+
+    gap: 10px;
+
+    border-bottom: 1px solid #edf1f6;
+}
+
+
+.summaryRow:last-child {
+    border-bottom: none;
+}
+
+
+.summaryLabel {
+
+    min-width: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    color: #69778b;
+
+    font-size: 12px;
+}
+
+
+.summaryLabel svg {
+    flex: 0 0 14px;
+
+    color: #5a4ff9;
+}
+
+
+.summaryRow strong {
+
+    min-width: 0;
+
+    color: #29354a;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    text-align: right;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================
+   BENEFITS
+========================================= */
+
+.benefitsPanel ul {
+
+    margin: 0;
+
+    padding: 0;
+
+    list-style: none;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+}
+
+
+.benefitsPanel li {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 7px;
+
+    color: #364156;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+}
+
+
+.benefitsPanel li span {
+
+    width: 16px;
+    height: 16px;
+
+    flex: 0 0 16px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #d9f6e9;
+
+    color: #19a36d;
+}
+
+
+/* =========================================
+   GENERATE
+========================================= */
+
+.backendGenerate {
+
+    width: 100%;
+
+    margin-top: 19px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 7px;
+
+    text-align: center;
+}
+
+
+.generateButton {
+
+    width: min(100%, 350px);
+
+    height: 39px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    border: none;
+
+    border-radius: 6px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6934f1,
+            #4f32e8
+        );
+
+    color: #ffffff;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    box-shadow:
+        0 7px 18px
+        rgba(91, 53, 237, 0.20);
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.generateButton:hover:not(:disabled) {
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 9px 20px
+        rgba(91, 53, 237, 0.25);
+}
+
+
+.generateButton:disabled {
+
+    opacity: 0.55;
+
+    cursor: not-allowed;
+}
+
+
+.backendGenerate small {
+
+    color: #8a93a5;
+
+    font-size: 11px;
+}
+
+
+.successMessage,
+.errorMessage {
+
+    margin: 0;
+
+    font-size: 12px;
+
+    line-height: 1.4;
+}
+
+
+.successMessage {
+    color: #1c9a6c;
+}
+
+
+.errorMessage {
+    color: #c94a52;
+}
+
+
+/* =========================================
+   CHATBOT
+========================================= */
+
+.backendChat {
+
+    min-width: 0;
+    min-height: 0;
+
+    height: 100%;
+    width: 210px;
+
+    padding: 15px;
+
+    border: 1px solid #eeeef3;
+    border-radius: 0 10px 10px 0;
+
+    background: #ffffff;
+
+    overflow: hidden;
+}
+
+
+.backendChat .maddyChatbot {
+
+    width: 100%;
+    height: 100%;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1050px) {
+
+    .backendLayout {
+
+        grid-template-columns:
+            minmax(0, 1fr)
+            210px;
+
+        gap: 12px;
+    }
+
+    .backendContent {
+
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+@media (max-width: 800px) {
+
+    .backendLayout {
+
+        height: auto;
+
+        min-height: 0;
+
+        grid-template-columns: 1fr;
+
+        overflow: visible;
+    }
+
+    .backendMain {
+
+        min-height: 420px;
+    }
+
+    .backendChat {
+
+        min-height: 330px;
+    }
+
+}
+
+
+@media (max-width: 560px) {
+
+    .backendMain {
+
+        padding: 12px;
+    }
+
+    .backendHeading h3 {
+
+        font-size: 17px;
+    }
+
+    .summaryRow {
+
+        grid-template-columns: 1fr;
+
+        gap: 3px;
+
+        padding: 7px 0;
+    }
+
+    .summaryRow strong {
+
+        text-align: left;
+    }
+
+    .generateButton {
+
+        width: 100%;
+    }
+
+}
+
+/* Current GBackend layout */
+.backendShell {
+    width: 100%;
+    max-width: 1180px;
+    margin: 0 auto;
+}
+
+.backendOverview {
+    width: 100%;
+    padding: 24px;
+    border: 1px solid #e7eaf0;
+    border-radius: 12px;
+    background: #ffffff;
+    box-sizing: border-box;
+}
+
+.backendHeader {
+    margin-bottom: 20px;
+}
+
+.backendEyebrow {
+    display: block;
+    margin-bottom: 6px;
+    color: #6b5cf6;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.backendHeader h3 {
+    margin: 0 0 6px;
+    color: #182033;
+    font-size: 24px;
+    line-height: 1.2;
+}
+
+.backendHeader p {
+    margin: 0;
+    color: #69778b;
+    font-size: 13px;
+}
+
+.backendContentGrid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(260px, 0.9fr);
+    gap: 16px;
+    align-items: stretch;
+}
+
+.backendContentGrid .summaryPanel,
+.backendContentGrid .benefitsPanel {
+    min-width: 0;
+    padding: 18px;
+    border: 1px solid #e3e7ee;
+    border-radius: 10px;
+    background: #ffffff;
+    box-sizing: border-box;
+}
+
+.summaryHead,
+.benefitsHead {
+    margin-bottom: 12px;
+}
+
+.summaryBadge {
+    color: #202b3e;
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.backendContentGrid .summaryRows {
+    display: flex;
+    flex-direction: column;
+}
+
+.backendContentGrid .summaryRow {
+    min-height: 42px;
+    display: grid;
+    grid-template-columns: minmax(120px, 1fr) minmax(100px, 1.4fr);
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid #edf1f6;
+}
+
+.backendContentGrid .summaryRow:last-child {
+    border-bottom: 0;
+}
+
+.backendContentGrid .summaryRow > span {
+    color: #69778b;
+    font-size: 13px;
+}
+
+.backendContentGrid .summaryRow strong {
+    min-width: 0;
+    color: #29354a;
+    font-size: 13px;
+    font-weight: 650;
+    text-align: right;
+    overflow-wrap: anywhere;
+}
+
+.benefitsList {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.benefitsList li {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    color: #364156;
+    font-size: 13px;
+    line-height: 1.45;
+}
+
+.benefitsList svg {
+    flex: 0 0 14px;
+    margin-top: 2px;
+    color: #19a36d;
+}
+
+.backendActionPanel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-top: 22px;
+    text-align: center;
+}
+
+.generateBackendButton {
+    min-width: 240px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 0 20px;
+    border: 0;
+    border-radius: 7px;
+    background: linear-gradient(135deg, #6934f1, #4f32e8);
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 750;
+    box-shadow: 0 7px 18px rgba(91, 53, 237, 0.2);
+    cursor: pointer;
+}
+
+.generateBackendButton:hover:not(:disabled) {
+    transform: translateY(-1px);
+}
+
+.generateBackendButton:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+.backendActionPanel small {
+    color: #8a93a5;
+    font-size: 12px;
+}
+
+.statusSuccess,
+.statusError {
+    max-width: 620px;
+    margin: 2px 0 0;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.statusSuccess {
+    color: #1c9a6c;
+}
+
+.statusError {
+    color: #c94a52;
+}
+
+.componentChat {
+    width: 100%;
+    min-height: 300px;
+    margin-top: 16px;
+}
+
+.componentChat .maddyChatbot {
+    width: 100%;
+}
+
+@media (max-width: 760px) {
+    .backendOverview {
+        padding: 16px;
+    }
+
+    .backendContentGrid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .backendContentGrid .summaryRow {
+        grid-template-columns: 1fr;
+        gap: 4px;
+        padding: 9px 0;
+    }
+
+    .backendContentGrid .summaryRow strong {
+        text-align: left;
+    }
+
+    .generateBackendButton {
+        width: 100%;
+        min-width: 0;
+    }
+}
+
+.backendStatusBanner {
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 16px;
+    padding: 11px 14px;
+    border: 1px solid #bdebd5;
+    border-radius: 7px;
+    background: #effbf5;
+    color: #168457;
+    font-size: 13px;
+    font-weight: 650;
+    line-height: 1.4;
+}
+
+.backendStatusBanner.isError {
+    border-color: #f0c6ca;
+    background: #fff4f4;
+    color: #bd3f49;
+}

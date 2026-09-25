@@ -18,7 +18,7 @@ nav {
 
 nav > .icon {
 
-    width: 90%;
+    width: 100%;
     height: 10%;
     display: flex;
     justify-content: center;
@@ -31,21 +31,55 @@ nav > .icon {
 
     color: rgb(210, 215, 232);
     font-weight: 600;
+    font-size: 18px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 
 }
 
-.icon > #icon1 {
+.icon > .profileInfo {
 
-    background-color: rgb(220, 221, 228);
     margin-right: 10px;
-    border-radius: 10px;
-    width: 23%;
-    height: 70%;
+    width: 58px;
+    height: 58px;
+    padding: 2px;
+    border: 1px solid #ffffff;
+    border-radius: 50%;
+    background: #f9fafc;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 3px solid #5a4ff9;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
+}
+
+.icon > .profileInfo .Email {
+    width: 52px;
+    height: 52px;
+    background: linear-gradient(135deg, #5a4ff9 0%, #7c6df7 100%);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border: 1px solid #ffffff;
+    box-shadow: 0 4px 10px rgba(90, 79, 249, 0.25);
+    flex-shrink: 0;
+    padding: 0;
+}
+
+.icon > .profileInfo .Email img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.icon > .profileInfo .Email span {
+    color: #ffffff;
+    font-weight: 800;
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    line-height: 1;
+    display: inline-block;
 }
 
 .options1{
@@ -97,6 +131,46 @@ li > a {
     gap: 10px;
     width: 100%;
     padding-left: 15px;
+}
+
+li > a.active {
+    color: #ffffff;
+}
+
+li > a.active svg {
+    color: #ffffff;
+}
+
+.logoutItem {
+    position: absolute;
+    left: 20px;
+    bottom: 20px;
+    width: calc(100% - 40px);
+    height: 42px;
+}
+
+.logoutNavButton {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 15px;
+    border: 1px solid rgba(255, 126, 126, 0.32);
+    border-radius: 10px;
+    background: rgba(189, 63, 73, 0.08);
+    color: #ff9a9f;
+    font: inherit;
+    font-weight: 550;
+    text-align: left;
+    cursor: pointer;
+}
+
+.logoutNavButton:hover {
+    background: #bd3f49;
+    border-color: #bd3f49;
+    color: #ffffff;
+    box-shadow: 0 8px 18px rgba(189, 63, 73, 0.24);
 }
 
 #boder {

@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 const CX = 700;
 const CY = 450;
@@ -63,6 +65,8 @@ function Node({ x, y, side, color, active, delay }) {
 }
 
 const Sign_Up = ({ onSwitchToLogin }) => {
+  const navigate = useNavigate();
+  const { register } = useAuth();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -78,6 +82,7 @@ const Sign_Up = ({ onSwitchToLogin }) => {
   const [result, setResult] = useState(null); // null | 'ok' | 'err'
   const [pressed, setPressed] = useState(false);
   const [runId, setRunId] = useState(0);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const activeColor = result === 'ok' ? COLORS.ok : result === 'err' ? COLORS.err : '#8fe9ff';
 
@@ -110,7 +115,7 @@ const Sign_Up = ({ onSwitchToLogin }) => {
     setConfirmState(value ? value === password : null);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const nameIsValid = name.trim().length >= 2;
@@ -123,12 +128,36 @@ const Sign_Up = ({ onSwitchToLogin }) => {
     setPasswordState(password.trim() ? passwordIsValid : null);
     setConfirmState(confirmPassword ? confirmIsValid : null);
 
-    setPressed(true);
-    setTimeout(() => setPressed(false), 350);
-
     const allValid = nameIsValid && emailIsValid && passwordIsValid && confirmIsValid;
     setResult(allValid ? 'ok' : 'err');
     setRunId((id) => id + 1);
+
+    if (!allValid) {
+      setErrorMessage('Complete all fields with a valid password confirmation.');
+      return;
+    }
+
+    setPressed(true);
+    setErrorMessage('');
+
+    try {
+      await register({
+        name: name.trim(),
+        email: email.trim(),
+        password
+      });
+      navigate('/login', { replace: true });
+    } catch (error) {
+      setResult('err');
+      const status = error?.response?.status || error?.status;
+      if (status === 409) {
+        setErrorMessage('Email already registered');
+      } else {
+        setErrorMessage(error?.response?.data?.message || error?.message || 'Unable to create your account.');
+      }
+    } finally {
+      setPressed(false);
+    }
   };
 
   const wrapClass = (state) => `input-row field-wrap${state === true ? ' is-valid' : state === false ? ' is-invalid' : ''}`;
@@ -202,7 +231,11 @@ const Sign_Up = ({ onSwitchToLogin }) => {
             href="#"
             onClick={(e) => {
               e.preventDefault();
-              if (onSwitchToLogin) onSwitchToLogin();
+              if (onSwitchToLogin) {
+                onSwitchToLogin();
+              } else {
+                navigate('/login');
+              }
             }}
           >
             Login
@@ -252,6 +285,8 @@ const Sign_Up = ({ onSwitchToLogin }) => {
         <button type="submit" className={`login-btn${pressed ? ' pressed' : ''}`} id="signupBtn">
           Sign Up
         </button>
+
+        {errorMessage && <p role="alert" className="login-error">{errorMessage}</p>}
 
         <div className="divider"><span>OR</span></div>
 

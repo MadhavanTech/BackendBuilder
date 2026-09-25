@@ -1,7 +1,9 @@
 import { Check, DatabaseZap, Lock, Link, User, Bot } from 'lucide-react';
-import React, { useContext, useEffect, useMemo, useState } from 'react'
+import React, { useContext, useEffect, useMemo, useRef, useState } from 'react'
 import '../style/Database.css'
 import { Appcontext } from '../context/Backend';
+import client from '../api/client';
+import { normalizeFriendlyErrorMessage } from '../utils/backendApi';
 
 const initialForm = {
   dbName: '',
@@ -11,6 +13,8 @@ const initialForm = {
   username: ''
 }
 
+const DEFAULT_DATABASE_TYPE = 'PostgreSQL'
+
 const statusSteps = [
   { key: 'input', label: 'Input started', value: 33 },
   { key: 'send', label: 'Data sent', value: 66 },
@@ -18,13 +22,41 @@ const statusSteps = [
 ]
 
 const Databases = () => {
-  const { setDatabases, Database } = useContext(Appcontext)
+  const { setDatabases, activeDatabase, setActiveDatabase, Database, backendApi, userId, currentUser } = useContext(Appcontext)
   const [form, setForm] = useState(initialForm)
   const [progress, setProgress] = useState(0)
   const [status, setStatus] = useState('Waiting for details')
   const [botResponse, setBotResponse] = useState('I will check the database connection automatically once the details are complete.')
   const [isConnected, setIsConnected] = useState(null)
   const [activeStep, setActiveStep] = useState(0)
+  const requestInFlight = useRef(false)
+
+  useEffect(() => {
+    if (!activeDatabase) {
+      setForm(initialForm)
+      setProgress(0)
+      setStatus('Waiting for details')
+      setBotResponse('I will check the database connection automatically once the details are complete.')
+      setIsConnected(null)
+      setActiveStep(0)
+      return
+    }
+
+    const loadedForm = {
+      dbName: activeDatabase.DBname || activeDatabase.dbName || activeDatabase.name || '',
+      connectionUrl: activeDatabase.DBurl || activeDatabase.dbUrl || activeDatabase.connectionUrl || '',
+      password: activeDatabase.Password || activeDatabase.password || '',
+      dbType: activeDatabase.type || activeDatabase.databaseType || DEFAULT_DATABASE_TYPE,
+      username: activeDatabase.Username || activeDatabase.username || '',
+    }
+
+    setForm(loadedForm)
+    setProgress(100)
+    setStatus('Database details loaded')
+    setBotResponse('This saved database is ready to continue through the builder.')
+    setIsConnected(true)
+    setActiveStep(2)
+  }, [activeDatabase])
 
   const steps = useMemo(() => statusSteps.map((step, index) => ({
     ...step,
@@ -37,6 +69,48 @@ const Databases = () => {
     const { name, value } = event.target
     const nextForm = { ...form, [name]: value }
     setForm(nextForm)
+
+    const fieldMap = {
+      dbName: 'DBname',
+      connectionUrl: 'DBurl',
+      password: 'Password',
+      dbType: 'type',
+      username: 'Username',
+    }
+
+    const draftDatabase = {
+      DBname: nextForm.dbName.trim() || activeDatabase?.DBname || activeDatabase?.dbName || activeDatabase?.name || 'Database',
+      DBurl: nextForm.connectionUrl.trim() || activeDatabase?.DBurl || activeDatabase?.dbUrl || activeDatabase?.connectionUrl || '',
+      Password: nextForm.password || activeDatabase?.Password || activeDatabase?.password || '',
+      type: nextForm.dbType || activeDatabase?.type || activeDatabase?.databaseType || activeDatabase?.dbType || DEFAULT_DATABASE_TYPE,
+      Username: nextForm.username.trim() || activeDatabase?.Username || activeDatabase?.username || '',
+      projectName: nextForm.dbName.trim() || activeDatabase?.projectName || activeDatabase?.DBname || activeDatabase?.dbName || activeDatabase?.name || 'Database',
+      status: 'In Progress',
+      Tables: Array.isArray(activeDatabase?.Tables) ? activeDatabase.Tables : [],
+      DBconnection: Array.isArray(activeDatabase?.DBconnection) ? activeDatabase.DBconnection : [],
+    }
+
+    setActiveDatabase((database) => ({
+      ...(database || {}),
+      ...draftDatabase,
+      [fieldMap[name]]: value,
+    }))
+
+    setDatabases((previousDatabases) => {
+      const baseDatabases = Array.isArray(previousDatabases) ? previousDatabases : []
+      if (!baseDatabases.length) {
+        return [draftDatabase]
+      }
+
+      const nextList = [...baseDatabases]
+      const lastIndex = nextList.length - 1
+      nextList[lastIndex] = {
+        ...nextList[lastIndex],
+        ...draftDatabase,
+        [fieldMap[name]]: value,
+      }
+      return nextList
+    })
 
     const hasAnyValue = Object.values(nextForm).some((item) => item.trim() !== '')
     const allFilled = Object.values(nextForm).every((item) => item.trim() !== '')
@@ -67,6 +141,10 @@ const Databases = () => {
   }
 
   const testConnection = async () => {
+    if (requestInFlight.current) return
+
+    requestInFlight.current = true
+
     try {
       setStatus('Checking the database connection...')
       setBotResponse('I am contacting the backend and validating the database connection details.')
@@ -74,24 +152,43 @@ const Databases = () => {
       setActiveStep(1)
       setIsConnected(null)
 
-      const dbObject = new Database(form.dbName, form.username, form.password, form.connectionUrl, form.dbType)
-      setDatabases(prev => [...prev, dbObject])
+      const databasePayload = {
+        DBname: form.dbName.trim(),
+        Username: form.username.trim(),
+        Password: form.password,
+        DBurl: form.connectionUrl.trim(),
+        type: form.dbType,
+      }
 
-      const response = await fetch('http://localhost:8080/api/database/test-connection', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(dbObject)
-      })
+      const response = await client.post('/api/database/test-connection', databasePayload)
 
-      const result = await response.json().catch(() => ({}))
-      const payload = result && typeof result === 'object' ? result : {}
+      const payload = response?.data && typeof response.data === 'object' ? response.data : {}
       const backendMessage = payload.message || payload.response || payload.details || payload.error || payload.status || 'No response message received from backend.'
-      const isSuccess = payload.success ?? response.ok
+      const isSuccess = payload.success ?? (response.status >= 200 && response.status < 300)
       const finalMessage = isSuccess
         ? `Connection successful. ${backendMessage}`
         : `Connection failed. ${backendMessage}`
+
+      if (isSuccess) {
+        const authenticatedUserId = userId || currentUser?.id || currentUser?.userId
+
+        if (!authenticatedUserId) {
+          throw new Error('You must be signed in before saving a database.')
+        }
+
+        if (!activeDatabase) {
+          await backendApi.addDatabaseToUser(authenticatedUserId, databasePayload)
+          const createdDatabase = new Database(
+            databasePayload.DBname,
+            databasePayload.Username,
+            databasePayload.Password,
+            databasePayload.DBurl,
+            databasePayload.type
+          )
+          setActiveDatabase(createdDatabase)
+          setDatabases((previousDatabases) => [...previousDatabases, createdDatabase])
+        }
+      }
 
       setIsConnected(isSuccess)
       setProgress(isSuccess ? 100 : 66)
@@ -100,12 +197,17 @@ const Databases = () => {
       setBotResponse(finalMessage)
     } catch (error) {
       console.error('Connection error:', error)
-      const fallbackMessage = 'Connection failed. The backend is unreachable or the database credentials are invalid.'
+      const backendError = error?.response?.data?.message || error?.response?.data?.error || error?.message
+      const fallbackMessage = normalizeFriendlyErrorMessage(
+        backendError || 'Connection failed. The backend is unreachable or the database credentials are invalid.'
+      )
       setIsConnected(false)
       setProgress(66)
       setActiveStep(1)
       setStatus(fallbackMessage)
       setBotResponse(fallbackMessage)
+    } finally {
+      requestInFlight.current = false
     }
   }
 

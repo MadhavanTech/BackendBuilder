@@ -15,7 +15,14 @@ const Columns = () => {
     : TableNames.filter(Boolean)
 
   useEffect(() => {
-    if (!Tablesname) {
+    const firstTableName = Tables[0]?.TableNames
+
+    if (!Tablesname || !Tables.some((Table) => Table.TableNames === Tablesname)) {
+      if (firstTableName) {
+        setTablesname(firstTableName)
+        return
+      }
+
       setColumns([])
       setCalums(0)
       return
@@ -105,7 +112,6 @@ const Columns = () => {
     <div className='columns'>
         <div className='calaum'>
         <div className='nave'>
-            <h4>Table:{Tablesname}</h4>
             <select id="Selecttable" value={Tablesname} onChange={handleChange}>
               <option value="" disabled>Change Table</option>
               {tableOptions.map((tableName) => (

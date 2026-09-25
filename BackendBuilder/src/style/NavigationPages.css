@@ -1,0 +1,191 @@
+.navigationPage {
+    min-height: 100%;
+    padding: 28px;
+    border: 1px solid #eeeef3;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #252a3a;
+}
+
+.navigationEyebrow {
+    display: block;
+    margin-bottom: 8px;
+    color: #5a4ff9;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.navigationPage h1 {
+    margin: 0 0 8px;
+    color: #252a3a;
+    font-size: 22px;
+}
+
+.navigationPage > p {
+    margin: 0;
+    color: #92949d;
+    font-size: 12px;
+}
+
+.navigationEmpty {
+    display: flex;
+    width: min(100%, 420px);
+    margin-top: 28px;
+    padding: 28px;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    border: 1px dashed #cfd1df;
+    border-radius: 8px;
+    background: #fafaff;
+    color: #5a4ff9;
+    text-align: center;
+}
+
+.navigationEmpty strong {
+    color: #252a3a;
+    font-size: 13px;
+}
+
+.navigationEmpty span {
+    color: #92949d;
+    font-size: 11px;
+}
+
+.docsPage {
+    padding: 32px;
+}
+
+.docsHeader {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 30px;
+}
+
+.docsHeader h1 {
+    font-size: 30px;
+}
+
+.docsHeader > div:first-child > p {
+    max-width: 560px;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.docsHeaderIcon {
+    display: grid;
+    width: 48px;
+    height: 48px;
+    place-items: center;
+    border-radius: 10px;
+    background: #eeebff;
+    color: #5a4ff9;
+}
+
+.docsGuideGrid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.docsGuide {
+    position: relative;
+    display: flex;
+    min-height: 164px;
+    padding: 18px;
+    flex-direction: column;
+    gap: 14px;
+    border: 1px solid #e7e9f0;
+    border-radius: 8px;
+    background: #ffffff;
+    transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.docsGuide:hover {
+    border-color: #cfc9ff;
+    box-shadow: 0 10px 24px rgba(90, 79, 249, 0.1);
+    transform: translateY(-2px);
+}
+
+.docsGuideIcon {
+    display: grid;
+    width: 36px;
+    height: 36px;
+    place-items: center;
+    border-radius: 8px;
+    background: #faf9ff;
+    color: #5a4ff9;
+}
+
+.docsGuide h2 {
+    margin: 0 0 6px;
+    color: #252a3a;
+    font-size: 14px;
+}
+
+.docsGuide p {
+    margin: 0;
+    color: #92949d;
+    font-size: 11px;
+    line-height: 1.55;
+}
+
+.docsGuideArrow {
+    position: absolute;
+    right: 16px;
+    top: 19px;
+    color: #b2b5c1;
+}
+
+.docsDownloads {
+    margin-top: 28px;
+    padding: 22px;
+    border: 1px solid #e7e9f0;
+    border-radius: 8px;
+    background: #fafaff;
+}
+
+.docsSectionTitle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 17px;
+    color: #5a4ff9;
+}
+
+.docsSectionTitle .navigationEyebrow { margin-bottom: 5px; }
+
+.docsSectionTitle h2 {
+    margin: 0;
+    color: #252a3a;
+    font-size: 17px;
+}
+
+.docsDownloadEmpty {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 17px;
+    border: 1px dashed #cfd1df;
+    border-radius: 6px;
+    color: #5a4ff9;
+}
+
+.docsDownloadEmpty div { display: grid; gap: 4px; }
+.docsDownloadEmpty strong { color: #252a3a; font-size: 12px; }
+.docsDownloadEmpty span { color: #92949d; font-size: 11px; }
+
+@media (max-width: 900px) {
+    .docsGuideGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 560px) {
+    .docsPage { padding: 22px; }
+    .docsHeader { margin-bottom: 22px; }
+    .docsHeader h1 { font-size: 25px; }
+    .docsGuideGrid { grid-template-columns: 1fr; }
+}

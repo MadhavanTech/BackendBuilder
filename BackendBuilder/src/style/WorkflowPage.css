@@ -1,20 +1,23 @@
 .componentWithChat {
     width: 100%;
-    height: 100%;
+    max-width: 70rem;
+    height: auto;
     min-width: 0;
-    min-height: 0;
+    min-height: 15rem;
+    margin: 0 auto;
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(210px, 250px);
-    gap: 20px;
+    grid-template-columns: minmax(130px, 0.8fr) minmax(0, 1.7fr) minmax(210px, 0.55fr);
+    gap: 0;
 }
 
 .componentChat {
     min-width: 0;
     min-height: 0;
-    padding: 14px;
-    border: 1px solid #5a4ff9;
-    border-radius: 8px;
-    background: #fbfbff;
+    height: 100%;
+    padding: 15px;
+    border: 1px solid #eeeef3;
+    border-radius: 0 10px 10px 0;
+    background: #ffffff;
     overflow: hidden;
 }
 
@@ -46,9 +49,11 @@
 @media (max-width: 800px) {
     .componentWithChat {
         grid-template-columns: 1fr;
+        min-height: 0;
     }
 
     .componentChat {
-        min-height: 220px;
+        min-height: 15rem;
+        border-radius: 10px;
     }
 }

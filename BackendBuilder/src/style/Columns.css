@@ -1,15 +1,13 @@
 .componentWithChat {
     width: 100%;
-    max-width: 100%;
-    height: min(100%, 620px);
+    height: min(620px, calc(100vh - 150px));
     max-height: calc(100vh - 150px);
     min-width: 0;
-    min-height: 0;
+    min-height: 420px;
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(220px, 280px);
     gap: 20px;
     overflow: hidden;
-    height: 200px;
 }
 
 .columns {
@@ -39,7 +37,6 @@
     overflow: hidden;
     border: 1px solid #dddde6;
     border-radius: 10px;
-    height: 22.5rem;
 }
 
 .calaum > .nave {
@@ -93,7 +90,21 @@ h4 > span {
 .componentChat {
     min-width: 0;
     min-height: 0;
+    height: 100%;
+    width: 210px;
+    padding: 15px;
+    border: 1px solid #eeeef3;
+    border-radius: 0 10px 10px 0;
+    background: #ffffff;
     overflow: hidden;
+}
+
+.componentWithChat > .componentChat {
+    width: 210px;
+    height: 322px;
+    min-height: 322px;
+    max-height: 322px;
+    align-self: center;
 }
 
 .constains table {

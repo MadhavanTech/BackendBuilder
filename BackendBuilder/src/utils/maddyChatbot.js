@@ -28,13 +28,19 @@ export async function askchatboat(question) {
   try {
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 30000);
-    const response = await fetch(WORKER_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ question }),
-      signal: controller.signal,
-    });
-    clearTimeout(timeout);
+    let response;
+
+    try {
+      response = await fetch(WORKER_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ question }),
+        credentials: 'omit',
+        signal: controller.signal,
+      });
+    } finally {
+      clearTimeout(timeout);
+    }
 
     if (!response.ok) {
       const bodyText = await response.text();
@@ -94,7 +100,11 @@ export async function askchatboat(question) {
       throw new Error(sanitizeResponseText('maddy_Chatboat is temporarily rate-limited. Please wait a moment and try again.'));
     }
 
-    const detail = error?.message || 'The chatbot worker did not respond.';
+    const detail = error?.name === 'AbortError'
+      ? 'The chatbot worker took too long to respond.'
+      : error?.status === 503
+        ? 'The chatbot worker is temporarily unavailable.'
+        : error?.message || 'The chatbot worker did not respond.';
     throw new Error(sanitizeResponseText(`maddy_Chatboat is unavailable right now. ${detail}`));
   }
 }

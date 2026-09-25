@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 const CX = 700;
 const CY = 450;
@@ -63,6 +65,9 @@ function Node({ x, y, side, color, active, delay }) {
 }
 
 const Login_Page = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { login } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -71,6 +76,7 @@ const Login_Page = () => {
   const [result, setResult] = useState(null); // null | 'ok' | 'err'
   const [pressed, setPressed] = useState(false);
   const [runId, setRunId] = useState(0);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const activeColor = result === 'ok' ? COLORS.ok : result === 'err' ? COLORS.err : '#8fe9ff';
 
@@ -95,7 +101,7 @@ const Login_Page = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const emailIsValid = EMAIL_RE.test(email.trim());
@@ -105,10 +111,37 @@ const Login_Page = () => {
     setPasswordState(password.trim() ? passwordIsValid : null);
 
     setPressed(true);
-    setTimeout(() => setPressed(false), 350);
-
-    setResult(emailIsValid && passwordIsValid ? 'ok' : 'err');
     setRunId((id) => id + 1);
+
+    if (!emailIsValid || !passwordIsValid) {
+      setResult('err');
+      setErrorMessage('Enter a valid email and a password with at least 6 characters.');
+      setPressed(false);
+      return;
+    }
+
+    try {
+      await login(email.trim(), password);
+      setResult('ok');
+      setErrorMessage('');
+      navigate(location.state?.from || '/app/dashboard', { replace: true });
+    } catch (error) {
+      setResult('err');
+      const status = error?.response?.status || error?.status;
+      if (error?.code === 'ECONNABORTED' || error?.code === 'ETIMEDOUT') {
+        setErrorMessage('The backend login request timed out. Check the backend logs and database connection.');
+      } else if (error?.message === 'Failed to fetch') {
+        setErrorMessage('Unable to connect to the backend. Please try again.');
+      } else if (status === 401) {
+        setErrorMessage('Invalid email or password');
+      } else if (status === 403) {
+        setErrorMessage('You do not have permission to sign in.');
+      } else {
+        setErrorMessage(error?.response?.data?.message || error?.message || 'Unable to sign in.');
+      }
+    } finally {
+      setPressed(false);
+    }
   };
 
   const emailWrapClass = `input-row field-wrap${emailState === true ? ' is-valid' : emailState === false ? ' is-invalid' : ''}`;
@@ -179,7 +212,7 @@ const Login_Page = () => {
 
         <div className="text">
           <p>Don't have an account yet?</p>
-          <a href="#">Sign up</a>
+          <a href="/signup" onClick={(event) => { event.preventDefault(); navigate('/signup'); }}>Sign up</a>
         </div>
 
         <div className="fields">
@@ -209,9 +242,17 @@ const Login_Page = () => {
           </div>
         </div>
 
-        <button type="submit" className={`login-btn${pressed ? ' pressed' : ''}`} id="submitBtn">
-          Login
+        <button
+          type="submit"
+          className={`login-btn${pressed ? ' pressed' : ''}`}
+          id="submitBtn"
+          disabled={pressed}
+          aria-busy={pressed}
+        >
+          {pressed ? 'Signing in...' : 'Login'}
         </button>
+
+        {errorMessage && <p role="alert" className="login-error">{errorMessage}</p>}
 
         <div className="divider"><span>OR</span></div>
 

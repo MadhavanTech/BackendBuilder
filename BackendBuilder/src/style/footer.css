@@ -1,12 +1,13 @@
 .footer {
     width: 100%;
-    max-width: 70rem;
+    max-width: none;
     min-height: 64px;
     margin: 0 auto;
     padding: 10px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    box-sizing: border-box;
 }
 
 .footer button {

@@ -14,9 +14,11 @@
 
 .componentWithChat > .workflowPage {
     height: 100%;
+    min-height: 0;
     border-radius: 10px;
     display: grid;
     grid-template-columns: 25% 50% 25%;
+    overflow: hidden;
 }
 
 .workflowPage > .parent {
@@ -26,6 +28,8 @@
     justify-content: center;
     align-items: center;
     padding: 10px;
+    min-height: 0;
+    overflow: hidden;
     border: 1px solid #dddde6;
     border-radius: 10px;
 }
@@ -130,6 +134,8 @@
     justify-content: center;
     align-items: center;
     padding: 10px;
+    min-height: 0;
+    overflow: hidden;
     border: 1px solid #dddde6;
     border-radius: 10px;
 }
@@ -225,18 +231,43 @@
 
     width: 100%;
     height: 100%;
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+}
+
+.createConnectionButton {
+    margin-top: 8px;
+    padding: 7px 12px;
+    border: 1px solid #5a4ff9;
+    border-radius: 6px;
+    background: #5a4ff9;
+    color: #ffffff;
+    font-size: 10px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.createConnectionButton:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
 }
 
 .Connection > .Connections{
 
+    position: relative;
     width: 85%;
     height: 80%;
+    min-width: 0;
+    min-height: 0;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 5em;
+    overflow: hidden;
 
 }
 
@@ -244,20 +275,36 @@
 
     border: 1px solid #dddde6;
     border-radius: 15px;
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
 }
 
 
 .Connections > .ParentTable {
+    grid-column: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
+    min-height: 0;
+}
+
+.Connections > .ParentTable,
+.Connections > .ChildTable {
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.Connections > .ChildTable {
+    grid-column: 2;
 }
 
 .ParentTable > .text {
      width: 100%;
-     height: 20%;
+     flex: 0 0 20%;
+     min-height: 54px;
+     height: auto;
      display: flex;
      justify-content: center;
      align-items: center;
@@ -344,23 +391,29 @@
     color: #5a4ff9;
 }
 
-.ParentTable > .ParentColums{
+.ParentTable > .ParentColums,
+.ChildTable > .ParentColums {
 
     width: 100%;
-    height: 23em;
+    flex: 1;
+    min-height: 0;
+    max-height: none;
     display: flex;
     flex-direction: column;
     gap: 1em;
     padding: 10px;
+    box-sizing: border-box;
     overflow-y: auto;
     overflow-x: hidden;
     scrollbar-width: none;
     -ms-overflow-style: none;
+	padding-top: 6em;
 }
 
 .ParentColums > .columnRow {
 
     width: 100%;
+    flex: 0 0 35px;
     height: 35px;
     border-radius: 10px;
     display: flex;
@@ -428,13 +481,194 @@
 
 
 .componentWithChat > .componentChat {
-    
-    height: 23em;
-    margin-top: 1.3em;
-    margin-right: 1em;
+    width: 210px;
+    height: 322px;
+    min-height: 322px;
+    max-height: 322px;
+    align-self: center;
+    margin: 0;
+    padding: 15px;
+    border: 1px solid #eeeef3;
+    border-radius: 0 10px 10px 0;
+    background: #ffffff;
 }
 
 .columsselect > span {
     color: #92949d;
     font-size: 9px;
+}
+
+.keyList {
+    justify-content: center;
+}
+
+.keyRow {
+    min-height: 48px;
+    flex: 0 0 48px;
+    height: 48px;
+    border: 1px solid #e5e3f7;
+    background: #faf9ff;
+    padding: 0 10px;
+    font-family: inherit;
+    text-align: left;
+}
+
+button.keyRow {
+    width: 100%;
+}
+
+.selectableKey {
+    cursor: pointer;
+}
+
+.selectableKey:hover,
+.selectedKey {
+    border-color: #5a4ff9;
+    background: #f0efff;
+}
+
+.disabledKey {
+    opacity: 0.58;
+}
+
+.columnName {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    color: #252a3a;
+    font-size: 10px;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.columnPoint {
+    width: 9px;
+    height: 9px;
+    flex: 0 0 9px;
+    margin-left: 8px;
+    border: 2px solid #aaa6b5;
+    border-radius: 50%;
+    background: #ffffff;
+}
+
+.selectableKey .columnPoint {
+    border-color: #5a4ff9;
+}
+
+.selectedKey .columnPoint {
+    background: #5a4ff9;
+}
+
+.keyRow .containspoint {
+    height: 48px;
+}
+
+.keyRow .columsselect {
+    height: 48px;
+}
+
+.keyLabel {
+    color: #5a4ff9;
+    font-size: 9px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.ChildTable {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 0;
+}
+
+.childKeyHeader {
+    width: 100%;
+    flex: 0 0 20%;
+    min-height: 54px;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.childKeyHeader h5 {
+    width: 50%;
+    margin: 0;
+    text-align: center;
+}
+
+.keyConnection {
+    position: absolute;
+    top: 50%;
+    left: -40px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #5a4ff9;
+    border-radius: 50%;
+    background: #ffffff;
+    color: #5a4ff9;
+    transform: translateY(-50%);
+}
+
+.keyConnection::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    width: 55px;
+    height: 2px;
+    background: #5a4ff9;
+    transform: translateY(-50%);
+}
+
+.keyConnection svg {
+    position: relative;
+    z-index: 1;
+}
+
+.childKeyHeader .relationControl {
+    margin-left: 0;
+}
+
+.connectionLine {
+    position: absolute;
+    height: 2px;
+    min-width: 8px;
+    transform-origin: left center;
+    background: #5a4ff9;
+    pointer-events: none;
+}
+
+.connectionBridge {
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    pointer-events: none;
+    border: 0;
+    border-radius: 0;
+    overflow: visible;
+}
+
+.connectionNode {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #5a4ff9;
+    border-radius: 50%;
+    background: #ffffff;
+    color: #5a4ff9;
+    transform: translate(-50%, -50%);
+}
+
+.connectionNode svg {
+    position: absolute;
 }

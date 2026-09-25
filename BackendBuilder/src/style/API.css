@@ -1,0 +1,443 @@
+/* =========================================
+   API PAGE
+========================================= */
+
+.apiLayout {
+    width: 100%;
+    max-width: 72rem;
+    min-height: 15rem;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 220px;
+    gap: 16px;
+    overflow: hidden;
+}
+
+.apiMain {
+    min-width: 0;
+    min-height: 0;
+    padding: 18px;
+    border: 1px solid #eceef4;
+    border-radius: 16px;
+    background: linear-gradient(180deg, #ffffff 0%, #fbfbff 100%);
+    box-shadow: 0 12px 28px rgba(32, 41, 68, 0.04);
+    font-size: 14px;
+    overflow-y: auto;
+}
+
+.apiChat {
+    width: 210px;
+    height: 322px;
+    min-height: 322px;
+    max-height: 322px;
+    align-self: center;
+    padding: 15px;
+    border: 1px solid #eeeef3;
+    border-radius: 0 10px 10px 0;
+    background: #ffffff;
+    overflow: hidden;
+}
+
+.apiChat .maddyChatbot {
+    width: 100%;
+    height: 100%;
+}
+
+.apiMain::-webkit-scrollbar {
+    width: 5px;
+}
+
+.apiMain::-webkit-scrollbar-thumb {
+    background: #dfe3eb;
+    border-radius: 10px;
+}
+
+/* =========================================
+   WORKSPACE
+========================================= */
+
+.apiWorkspace {
+    width: 100%;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 240px;
+    gap: 16px;
+    align-items: start;
+}
+
+.apiTablePanel,
+.apiPreviewPanel {
+    min-width: 0;
+    border: 1px solid #ebedf4;
+    border-radius: 14px;
+    background: linear-gradient(180deg, #ffffff 0%, #fafbff 100%);
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.02);
+}
+
+.apiTablePanel {
+    padding: 12px;
+}
+
+.apiTableSelector {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.apiTableChip {
+    border: 1px solid #e4e7ef;
+    background: #f6f7fb;
+    color: #475467;
+    border-radius: 999px;
+    padding: 7px 12px;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.apiTableChip.selected {
+    background: linear-gradient(135deg, #5a4ff9 0%, #6b63ff 100%);
+    border-color: #5a4ff9;
+    color: #ffffff;
+    box-shadow: 0 8px 18px rgba(90, 79, 249, 0.18);
+}
+
+.apiBuilderCard {
+    border: 1px solid #eceafc;
+    border-radius: 12px;
+    background: #ffffff;
+    padding: 12px;
+}
+
+.apiBuilderHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.apiBuilderLabel {
+    display: block;
+    margin-bottom: 4px;
+    color: #6a5ef8;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.apiBuilderHeader h4 {
+    margin: 0;
+    color: #1f2937;
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.apiAddBtn {
+    border: 1px solid #dfe3ff;
+    background: #f4f3ff;
+    color: #4f46e5;
+    border-radius: 10px;
+    padding: 8px 10px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 12px;
+}
+
+.apiEntryList {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.apiEntryCard {
+    display: flex;
+    align-items: end;
+    gap: 10px;
+    padding: 10px;
+    border: 1px solid #edf0f5;
+    border-radius: 10px;
+    background: #fbfbff;
+}
+
+.apiField {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.apiFieldWide {
+    flex: 1;
+}
+
+.apiFieldShort {
+    width: 110px;
+}
+
+.apiField label {
+    font-size: 10px;
+    color: #4b5563;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.apiField input,
+.apiField select {
+    height: 36px;
+    border: 1px solid #dde4f0;
+    border-radius: 8px;
+    background: #ffffff;
+    padding: 0 10px;
+    color: #1f2937;
+    font-size: 12px;
+    outline: none;
+}
+
+.apiField input:focus,
+.apiField select:focus {
+    border-color: #5a4ff9;
+    box-shadow: 0 0 0 3px rgba(90, 79, 249, 0.08);
+}
+
+.apiToggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: #374151;
+    font-weight: 700;
+    margin-bottom: 5px;
+    min-width: 66px;
+}
+
+.apiToggle input {
+    accent-color: #5a4ff9;
+}
+
+.apiRemoveBtn {
+    border: 1px solid #f2d7da;
+    background: #fff3f4;
+    color: #b42318;
+    border-radius: 8px;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-bottom: 1px;
+}
+
+.apiEmptyState,
+.apiNoEntry,
+.apiNoPreview {
+    margin: 0;
+    color: #667085;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.apiAbout {
+    min-height: 55px;
+    margin-top: 12px;
+    padding: 10px;
+    display: flex;
+    gap: 8px;
+    border: 1px solid #e2dcff;
+    border-radius: 8px;
+    background: #f8f6ff;
+}
+
+.apiAboutIcon {
+    width: 20px;
+    height: 20px;
+    flex: 0 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    background: #ece8ff;
+    color: #5a4ff9;
+}
+
+.apiAbout h4 {
+    margin: 0 0 3px;
+    color: #4d3cc5;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.apiAbout p {
+    margin: 0;
+    color: #69778b;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+/* =========================================
+   PREVIEW PANEL
+========================================= */
+
+.apiPreviewPanel {
+    padding: 12px 12px 10px;
+}
+
+.apiPreviewTitle {
+    margin-bottom: 10px;
+    color: #252a3a;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.apiPreview {
+    min-height: 150px;
+    max-height: 240px;
+    padding: 10px;
+    border: 1px solid #1d2940;
+    border-radius: 10px;
+    background: linear-gradient(180deg, #101a30 0%, #121f39 100%);
+    overflow-y: auto;
+}
+
+.apiRoute {
+    min-height: 22px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+    font-family: Consolas, 'Courier New', monospace;
+}
+
+.apiMethod {
+    min-width: 36px;
+    font-size: 10px;
+    font-weight: 800;
+}
+
+.apiMethod.get { color: #3ed28f; }
+.apiMethod.post { color: #62a7ff; }
+.apiMethod.put { color: #e8cb61; }
+.apiMethod.delete { color: #f17878; }
+
+.apiPath {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #e5eaf3;
+    font-size: 11px;
+}
+
+/* =========================================
+   AUTH
+========================================= */
+
+.apiAuth {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #edf0f5;
+}
+
+.apiAuthTitle {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-bottom: 8px;
+}
+
+.apiAuthTitle strong {
+    color: #252a3a;
+    font-size: 13px;
+}
+
+.apiAuthIcon {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    background: #ebfaf2;
+    color: #21966d;
+}
+
+.apiSelect {
+    position: relative;
+}
+
+.apiSelect select {
+    width: 100%;
+    height: 34px;
+    padding: 0 30px 0 10px;
+    appearance: none;
+    border: 1px solid #dfe5ee;
+    border-radius: 8px;
+    outline: none;
+    background: #ffffff;
+    color: #344052;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: inset 0 1px 2px rgba(15, 23, 42, 0.03);
+}
+
+.apiSelect svg {
+    position: absolute;
+    right: 8px;
+    top: 9px;
+    color: #6d7b8d;
+    pointer-events: none;
+}
+
+@media (max-width: 1050px) {
+    .apiLayout {
+        grid-template-columns: minmax(0, 1fr) 210px;
+        gap: 12px;
+    }
+
+    .apiWorkspace {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 800px) {
+    .apiLayout {
+        height: auto;
+        min-height: 0;
+        grid-template-columns: 1fr;
+        overflow: visible;
+    }
+
+    .apiMain {
+        min-height: 420px;
+    }
+
+    .apiChat {
+        min-height: 330px;
+    }
+}
+
+@media (max-width: 560px) {
+    .apiMain {
+        padding: 12px;
+    }
+
+    .apiEntryCard {
+        flex-wrap: wrap;
+    }
+
+    .apiFieldShort {
+        width: 100%;
+    }
+
+    .apiRemoveBtn {
+        margin-left: auto;
+    }
+}

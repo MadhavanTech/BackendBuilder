@@ -224,12 +224,28 @@ h5 > span {
     padding: 15px;
     min-width: 0;
     min-height: 100%;
+    width: 210px;
     border: 1px solid #eeeef3;
+    background: #ffffff;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 16px;
     overflow: hidden;
+}
+
+.NextStep > .maddyChatbot {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+}
+
+.main > .NextStep {
+    width: 210px;
+    height: 322px;
+    min-height: 322px;
+    max-height: 322px;
+    align-self: center;
 }
 
 .NextStep > h4 {
